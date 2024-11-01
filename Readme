@@ -1,0 +1,38 @@
+# PruebaTecnica
+
+Este proyecto es una prueba técnica que implementa una estructura básica utilizando Clean Architecture.
+
+## Requisitos Previos
+
+Asegúrate de tener instalados los siguientes programas en tu máquina:
+
+- [Docker](https://www.docker.com/get-started)
+
+## Estructura del Proyecto
+
+La aplicación sigue el patrón de Clean Architecture, lo que permite una separación clara de las responsabilidades y una mejor mantenibilidad. Aunque la aplicación está estructurada, no se completaron todos los detalles de estilización y configuración de los endpoints con la base de datos debido a limitaciones de tiempo.
+
+## Instrucciones para Ejecutar la Aplicación
+
+1. Clona este repositorio en tu máquina local:
+
+   git clone https://tu-repositorio.git
+   cd nombre-del-repositorio
+Asegúrate de que Docker esté ejecutándose en tu máquina.
+
+Construye la imagen Docker:
+
+docker-compose build
+
+Inicia los contenedores:
+
+docker-compose up
+
+Accede a la aplicación en tu navegador en la siguiente dirección: http://localhost:4200
+
+
+Notas Importantes
+Debido a razones personales, no tuve tiempo suficiente para completar la prueba. Quedaron pendientes aspectos de estilización y la finalización de la configuración de los endpoints para la conexión con la base de datos.
+
+La estructura de la aplicación está implementada siguiendo el principio de Clean Architecture, lo que facilita su ampliación y mantenimiento en el futuro.
+

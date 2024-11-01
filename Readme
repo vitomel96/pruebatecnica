@@ -16,8 +16,8 @@ La aplicación sigue el patrón de Clean Architecture, lo que permite una separa
 
 1. Clona este repositorio en tu máquina local:
 
-   git clone https://tu-repositorio.git
-   cd nombre-del-repositorio
+   git clone git@github.com:vitomel96/pruebatecnica.git
+   cd pruebatecnica
 Asegúrate de que Docker esté ejecutándose en tu máquina.
 
 Construye la imagen Docker:

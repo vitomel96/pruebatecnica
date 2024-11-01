@@ -1,0 +1,31 @@
+# Fase de construcción
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copiar solo el archivo .csproj y restaurar dependencias antes de copiar el resto del código
+COPY ["PersonasAPI/PersonasAPI.csproj", "PersonasAPI/"]
+RUN dotnet restore "PersonasAPI/PersonasAPI.csproj"
+
+# Copiar el resto de los archivos del proyecto
+COPY PersonasAPI/. PersonasAPI/
+
+# Construir el proyecto
+WORKDIR "/src/PersonasAPI"
+RUN dotnet build "PersonasAPI.csproj" -c Release -o /app/build
+
+# Fase de publicación
+FROM build AS publish
+RUN dotnet publish "PersonasAPI.csproj" -c Release -o /app/publish
+
+# Fase de ejecución
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+
+# Copiar los archivos publicados desde la fase de publicación
+COPY --from=publish /app/publish/. .
+
+# Exponer el puerto para la aplicación
+EXPOSE 8080
+
+# Definir el punto de entrada de la aplicación
+ENTRYPOINT ["dotnet", "PersonasAPI.dll"]

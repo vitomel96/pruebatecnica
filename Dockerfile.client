@@ -1,0 +1,23 @@
+# Dockerfile.client
+
+# Fase de construcción
+FROM node:18 AS build
+WORKDIR /app
+
+# Copiar los archivos de definición de la aplicación
+COPY ["personas-app/package.json", "personas-app/package-lock.json", "./"]
+RUN npm install
+
+# Copiar el resto de los archivos de la aplicación
+COPY ./personas-app ./ 
+
+# Construir la aplicación para producción
+RUN npm run build
+
+# Fase de producción
+FROM nginx:alpine
+COPY --from=build /app/dist/personas-app/browser /usr/share/nginx/html
+EXPOSE 80
+
+# Nginx servirá automáticamente el contenido en /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
